@@ -23,10 +23,27 @@ function ttspam() {
     });
 }
 
+function virtualbloat() {
+    console.log("Searching for divs with h2 titles containing 'virtual'...");
+    document.querySelectorAll("div").forEach(div => {
+        const h2 = div.querySelector("h2");
+        
+        // Check if the h2 exists and its text contains the word "virtual"
+        if (h2 && h2.innerText.toLowerCase().includes("virtual")) {
+            const parentLi = h2.closest('li');
+            if (parentLi) {
+                console.log(`Hiding <li>: "${parentLi.innerText.trim()}"`);
+                parentLi.style.display = "none"; // Hide the li element by setting display to none
+            }
+        }
+    });
+}
+
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey && event.key === '~') {
         console.log("Shift + ~ pressed! Executing functions...");
         openingBloat();
         ttspam();
+        virtualbloat();
     }
 });
